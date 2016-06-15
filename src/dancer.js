@@ -1,10 +1,11 @@
 // Creates and returns a new dancer object that can step
-var Dancer = function(top, left, timeBetweenSteps) {
+var Dancer = function(top, left, timeBetweenSteps, index) {
   // use jQuery to create an HTML <span> tag
   this.$node = $('<span class="dancer"> <img src="http://orig02.deviantart.net/7a2d/f/2013/232/7/f/runin__like_a_new_super_mario_brother_by_neoweegee-d6iy5bv.gif" > </span>');
   this.timeBetweenSteps = timeBetweenSteps;
   this.step();
-  
+  this.index = index;
+  this.exists = true;
 
   // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote
   // this one sets the position to some random default point within the body
@@ -33,4 +34,24 @@ Dancer.prototype.setPosition = function(top, left) {
     left: left
   };
   this.$node.css(styleSettings);
+};
+
+Dancer.prototype.setSize = function(height, width) {
+  var styleSettings = {
+    height: height + 'px',
+    width: width + 'px'
+  };
+  this.$node.css(styleSettings);
+};
+
+Dancer.prototype.removeSelf = function() {
+  var index;
+  for (var i = 0; i < window.dancers.length; i++) {
+    if (window.dancers[i] === this) {
+      index = i;
+    }
+  }
+  //delete window.dancers[this.index]; //=== undefined;
+  this.$node.remove();
+  this.exists = false;
 };

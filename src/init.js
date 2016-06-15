@@ -1,5 +1,34 @@
 $(document).ready(function() {
-  window.dancers = [];
+  //window.dancers = [];
+  window.dancers = {};
+  window.index = 0;
+  window.count = 0; 
+
+
+  
+  var makeMushroom = function(){
+    var dancer = new SexyBlinkyDancer(
+      $("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000 + 3000
+    );
+    $('body').append(dancer.$node);
+    window.dancers[index] = dancer;
+    index++;
+    setTimeout(makeMushroom, 5000);
+    
+    
+  };
+  makeMushroom(); 
+
+
+  var timer = function(){
+    document.getElementById("count").innerHTML = "Mushrooms Eaten: " + window.count; 
+    setTimeout(timer, 200);
+  };
+  timer();
+
+
 
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -25,16 +54,19 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 2500 
+      Math.random() * 1000 + 3000, index
     );
     $('body').append(dancer.$node);
-    window.dancers.push(dancer);
+    //window.dancers.push(dancer);
+    window.dancers[index] = dancer;
+    index++;
   });
 
   $('.lineUpButton').on('click', function(event) {
-    for (var i = 0; i < window.dancers.length; i++) {
-      window.dancers[i].setPosition(window.innerHeight / 6*5, (window.innerWidth) / (window.dancers.length + 1) * (i + 1));
+    for (var i in window.dancers) {
+      window.dancers[i].setPosition(window.innerHeight * 0.8, (window.innerWidth) / (window.dancers.length + 1) * (i + 1));
     }
   });
+
 });
 
