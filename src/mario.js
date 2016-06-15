@@ -1,7 +1,7 @@
-var BlinkyDancer = function(top, left, timeBetweenSteps, index) {
+var Mario = function(top, left, timeBetweenSteps, index) {
   
 
-  Dancer.call(this, top, left, timeBetweenSteps); 
+  Character.call(this, top, left, timeBetweenSteps); 
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
   // so we must keep a copy of the old version of this function
   this.top = 100;
@@ -31,11 +31,11 @@ var BlinkyDancer = function(top, left, timeBetweenSteps, index) {
   console.log(this.step);*/
 };
 
-BlinkyDancer.prototype = Object.create(Dancer.prototype);
-BlinkyDancer.prototype.constructor = BlinkyDancer;
+Mario.prototype = Object.create(Character.prototype);
+Mario.prototype.constructor = Mario;
 
-BlinkyDancer.prototype.step = function() {
-  Dancer.prototype.step.call(this);
+Mario.prototype.step = function() {
+  Character.prototype.step.call(this);
 
   //this.left += 10;
   var move = function() {
@@ -61,14 +61,14 @@ BlinkyDancer.prototype.step = function() {
   //this.$node.toggle();
 };
 
-BlinkyDancer.prototype.jump = function() {
+Mario.prototype.jump = function() {
   var starth = parseInt(this.$node.css("top"), 10);
-  /*var upf = function(dancer) {
+  /*var upf = function(character) {
     return function()
-    return setPosition(this.setPosition(++starth)).call(dancer).bind(dancer);
+    return setPosition(this.setPosition(++starth)).call(character).bind(character);
   };
-  var downf = function(dancer) {
-    return setPosition(this.setPosition(--starth)).call(dancer).bind(dancer);
+  var downf = function(character) {
+    return setPosition(this.setPosition(--starth)).call(character).bind(character);
   };
   var up = upf(this);
   var down = downf(this);*/
@@ -98,7 +98,7 @@ BlinkyDancer.prototype.jump = function() {
   setTimeout(down, 900);
   setTimeout(down, 1000);*/
 
-  /*Dancer.prototype.setPosition.call(this,this.top);
+  /*Character.prototype.setPosition.call(this,this.top);
   var count = 0; 
   var height = 5; 
   while (count < height){

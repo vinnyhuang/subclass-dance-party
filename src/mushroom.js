@@ -1,6 +1,6 @@
-var SexyBlinkyDancer = function(top, left, timeBetweenSteps, index) { 
-  BlinkyDancer.call(this, top, left, timeBetweenSteps, index); 
-  this.$node = $('<span class="dancer"> <img src="http://icons.iconarchive.com/icons/ph03nyx/super-mario/256/Retro-Mushroom-Super-3-icon.png" height="50" width="50"> </span>');
+var Mushroom = function(top, left, timeBetweenSteps, index) { 
+  Mario.call(this, top, left, timeBetweenSteps, index); 
+  this.$node = $('<span class="character"> <img src="http://icons.iconarchive.com/icons/ph03nyx/super-mario/256/Retro-Mushroom-Super-3-icon.png" height="50" width="50"> </span>');
   this.setPosition(window.innerHeight * (0.65+ Math.random()*0.1), left);
   this.step();
   //this.setSize(50, 50);
@@ -25,30 +25,30 @@ var SexyBlinkyDancer = function(top, left, timeBetweenSteps, index) {
   console.log(this.step);*/
 };
 
-SexyBlinkyDancer.prototype = Object.create(BlinkyDancer.prototype);
-SexyBlinkyDancer.prototype.constructor = SexyBlinkyDancer;
+Mushroom.prototype = Object.create(Mario.prototype);
+Mushroom.prototype.constructor = Mushroom;
 
-SexyBlinkyDancer.prototype.step = function() {
+Mushroom.prototype.step = function() {
 
   this.timeBetweenSteps = 100;
-  for (var i in window.dancers) {
-    var dancer = window.dancers[i];
-    if (window.dancers[i].constructor === BlinkyDancer) {
+  for (var i in window.characters) {
+    var character = window.characters[i];
+    if (window.characters[i].constructor === Mario) {
       if (Math.abs(parseInt(this.$node.css("left"), 10) - 
-                   parseInt(dancer.$node.css("left"), 10)) <= 30 &&
+                   parseInt(character.$node.css("left"), 10)) <= 30 &&
           Math.abs(parseInt(this.$node.css("top"), 10) - 
-                   parseInt(dancer.$node.css("top"), 10)) <= 30) {
-        dancer.size = 2;
-        dancer.setPosition(0.77 * window.innerHeight);
+                   parseInt(character.$node.css("top"), 10)) <= 30) {
+        character.size = 2;
+        character.setPosition(0.77 * window.innerHeight);
         this.removeSelf();
-        //delete window.dancers[this.index];
+        //delete window.characters[this.index];
         window.count++; 
         console.log(window.count);
       }
     }
   }
   if (this.exists === true) {
-    Dancer.prototype.step.call(this);
+    Character.prototype.step.call(this);
     //console.log("abc");
   }
 

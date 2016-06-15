@@ -1,19 +1,19 @@
 $(document).ready(function() {
-  //window.dancers = [];
-  window.dancers = {};
+  //window.characters = [];
+  window.characters = {};
   window.index = 0;
   window.count = 0; 
 
 
   
   var makeMushroom = function(){
-    var dancer = new SexyBlinkyDancer(
+    var character = new Mushroom(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000 + 3000
     );
-    $('body').append(dancer.$node);
-    window.dancers[index] = dancer;
+    $('body').append(character.$node);
+    window.characters[index] = character;
     index++;
     setTimeout(makeMushroom, 5000);
     
@@ -30,41 +30,41 @@ $(document).ready(function() {
 
 
 
-  $('.addDancerButton').on('click', function(event) {
-    /* This function sets up the click handlers for the create-dancer
+  $('.addCharacterButton').on('click', function(event) {
+    /* This function sets up the click handlers for the create-character
      * buttons on dancefloor.html. You should only need to make one small change to it.
-     * As long as the "data-dancer-maker-function-name" attribute of a
-     * class="addDancerButton" DOM node matches one of the names of the
+     * As long as the "data-character-maker-function-name" attribute of a
+     * class="addCharacterButton" DOM node matches one of the names of the
      * maker functions available in the global scope, clicking that node
-     * will call the function to make the dancer.
+     * will call the function to make the character.
      */
 
-    /* dancerMakerFunctionName is a string which must match
-     * one of the dancer maker functions available in global scope.
+    /* characterMakerFunctionName is a string which must match
+     * one of the character maker functions available in global scope.
      * A new object of the given type will be created and added
      * to the stage.
      */
-    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+    var characterMakerFunctionName = $(this).data('character-maker-function-name');
 
-    // get the maker function for the kind of dancer we're supposed to make
-    var dancerMakerFunction = window[dancerMakerFunctionName];
+    // get the maker function for the kind of character we're supposed to make
+    var characterMakerFunction = window[characterMakerFunctionName];
 
-    // make a dancer with a random position
+    // make a character with a random position
 
-    var dancer = new dancerMakerFunction(
+    var character = new characterMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000 + 3000, index
     );
-    $('body').append(dancer.$node);
-    //window.dancers.push(dancer);
-    window.dancers[index] = dancer;
+    $('body').append(character.$node);
+    //window.characters.push(character);
+    window.characters[index] = character;
     index++;
   });
 
   $('.lineUpButton').on('click', function(event) {
-    for (var i in window.dancers) {
-      window.dancers[i].setPosition(window.innerHeight * 0.8, (window.innerWidth) / (window.dancers.length + 1) * (i + 1));
+    for (var i in window.characters) {
+      window.characters[i].setPosition(window.innerHeight * 0.8, (window.innerWidth) / (window.characters.length + 1) * (i + 1));
     }
   });
 
