@@ -15,7 +15,7 @@ $(document).ready(function() {
     $('body').append(character.$node);
     window.characters[index] = character;
     index++;
-    setTimeout(makeMushroom, 5000);
+    setTimeout(makeMushroom, 3000);
     
     
   };

@@ -6,7 +6,9 @@ var Mushroom = function(top, left, timeBetweenSteps, index) {
   //this.setSize(50, 50);
   // we plan to overwrite the step function below, but we still want the superclass step behavior to work,
   // so we must keep a copy of the old version of this function
-
+  setTimeout(function(){
+    return this.removeSelf();
+  }.bind(this), 10000);
   //console.log(this.step2);
 
   /*var oldStep = this.step;
